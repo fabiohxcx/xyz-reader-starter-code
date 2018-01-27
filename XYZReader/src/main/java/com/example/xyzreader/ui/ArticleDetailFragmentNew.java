@@ -16,6 +16,7 @@ import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.format.DateUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -148,14 +149,22 @@ public class ArticleDetailFragmentNew extends Fragment implements
         if (mRootView == null) {
             return;
         }
-
+        TextView titleView = (TextView) mRootView.findViewById(R.id.article_title);
         TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
 
 
         if (mCursor != null) {
 
-            toolbar.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
+            DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
+            float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
+
+            if (dpWidth < 500) {
+                toolbar.setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
+            } else {
+                titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
+            }
+
             Date publishedDate = parsePublishedDate();
             if (!publishedDate.before(START_OF_EPOCH.getTime())) {
                 bylineView.setText(Html.fromHtml(

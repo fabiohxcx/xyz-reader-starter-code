@@ -73,6 +73,7 @@ public class ArticleListActivity extends ActionBarActivity implements
         if (savedInstanceState == null) {
             refresh();
         }
+
     }
 
     public int dpToPx(int dp) {
