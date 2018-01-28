@@ -9,6 +9,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.graphics.Palette;
@@ -108,6 +109,8 @@ public class ArticleListActivity extends ActionBarActivity implements
             if (UpdaterService.BROADCAST_ACTION_STATE_CHANGE.equals(intent.getAction())) {
                 mIsRefreshing = intent.getBooleanExtra(UpdaterService.EXTRA_REFRESHING, false);
                 mSwipeRefreshLayout.setRefreshing(mIsRefreshing);
+
+                Snackbar.make(mSwipeRefreshLayout, getResources().getString(R.string.snackbar_article_list), Snackbar.LENGTH_SHORT).show();
             }
         }
     };

@@ -132,10 +132,12 @@ public class ArticleDetailFragmentNew extends Fragment implements
         mRootView.findViewById(R.id.share_fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
                         .setType("text/plain")
                         .setText(toolbar.getTitle())
                         .getIntent(), getString(R.string.action_share)));
+
             }
         });
 

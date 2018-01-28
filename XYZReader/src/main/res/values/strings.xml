@@ -9,4 +9,5 @@
 
     <string name="up">Up</string>
 
+    <string name="snackbar_article_list">Articles updated</string>
 </resources>
